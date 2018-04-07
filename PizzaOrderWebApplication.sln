@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaOrderWebApplication", "PizzaOrderWebApplication\PizzaOrderWebApplication.csproj", "{DCCC125A-2C46-45FE-867E-2D7CDC92F63E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCCC125A-2C46-45FE-867E-2D7CDC92F63E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCCC125A-2C46-45FE-867E-2D7CDC92F63E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCCC125A-2C46-45FE-867E-2D7CDC92F63E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCCC125A-2C46-45FE-867E-2D7CDC92F63E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

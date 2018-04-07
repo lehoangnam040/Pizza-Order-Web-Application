@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Layout/_MyLayout.cshtml";
+}
+
+@section navigation {
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Menu", "Index", "CustomerOrder")</li>
+    <li class="active">@Html.ActionLink("Contact", "Contact", "Home")</li>
+}
+
+<div style="width: 100%; height: 300px;">
+    <iframe width="950" height="300" frameborder="0" style="border:0" allowfullscreen 
+            src="https://www.google.com/maps?q=45+nguy%E1%BB%85n+tr%C3%A3i,+thanh+xu%C3%A2n,+h%C3%A0+n%E1%BB%99i&amp;t=m&amp;z=14&amp;output=embed">
+    </iframe>
+</div>
+
+<div>
+    <div class="col-sm-4 col-xs-12 well" style="margin-top: 30px;">
+        <h2>Welcome to store!</h2>
+        <p><span class="glyphicon glyphicon-map-marker"></span> No. 4 Alley 332 Nguyen Trai Street, Thanh Xuan District, Ha Noi</p>
+        <p><span class="glyphicon glyphicon-phone-alt"></span> Phone: (0243) 666 888</p>
+    </div>
+
+    <div class="col-sm-8 col-xs-12" style="margin-top: 30px;">
+        <h2>Contact Us</h2>
+        <form class="form-horizontal" action="/Home/GetContact" method="post">
+            <div class="form-group">
+                <label class="control-label col-sm-2">Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="name" class="form-control" placeholder="Your name (required)" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Email:</label>
+                <div class="col-sm-10">
+                    <input type="email" name="email" class="form-control" placeholder="Your email" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Phone:</label>
+                <div class="col-sm-10">
+                    <input type="text" name="phone" class="form-control" placeholder="Your phone" pattern="[0-9]{10,14}" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Message:</label>
+                <div class="col-sm-10">
+                    <textarea name="message" class="form-control" required></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Send</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

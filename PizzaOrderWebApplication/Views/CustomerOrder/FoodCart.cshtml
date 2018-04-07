@@ -1,0 +1,75 @@
+﻿@model List<PizzaOrderWebApplication.Models.OrderDetail>
+
+@{
+    ViewBag.Title = "FoodCart";
+    Layout = "~/Views/Layout/_MyLayout.cshtml";
+}
+
+@section myjavascripts {
+    <script>
+        function plus(btnPlus) {
+            var row = btnPlus.parentNode.parentNode.children;
+
+            var quantity = row[2];
+            var unitprice = row[3];
+            var price = row[4];
+
+            price.innerHTML = Number(unitprice.innerHTML) * (Number(quantity.innerHTML) + 1);
+            quantity.innerHTML = Number(quantity.innerHTML) + 1;
+        }
+
+        function minus(btnMinus) {
+            var row = btnMinus.parentNode.parentNode.children;
+
+            var quantity = row[2];
+            var unitprice = row[3];
+            var price = row[4];
+
+            price.innerHTML = Number(unitprice.innerHTML) * (Number(quantity.innerHTML) - 1);
+            quantity.innerHTML = Number(quantity.innerHTML) - 1;
+        }
+
+        function remove(btnRemove) {
+            var row = btnRemove.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+    </script>
+}
+
+@section navigation {
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Menu", "Index", "CustomerOrder")</li>
+    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+}
+
+<h2><span class="label label-warning">Check the Menu you have ordered</span></h2>
+<br />
+<table class="table table-responsive">
+    <tr>
+        <th>Food</th>
+        <th>Size</th>
+        <th>Quantity</th>
+        <th>Unit Price ($)</th>
+        <th>Price ($)</th>
+        <th></th>
+    </tr>
+    @foreach (var o in Model)
+    {
+        <tr>
+            <td>@o.Dish.Food.FoodName</td>
+            <td>@o.Size</td>
+            <td>@o.Quantity</td>
+            <td>@o.Dish.Price</td>
+            <td>@((o.Dish.Price * o.Quantity))</td>
+            <td>
+                <button class="btn btn-info" onclick="plus(this)"><span class="glyphicon glyphicon-plus"></span></button>
+                <button class="btn btn-info" onclick="minus(this)"><span class="glyphicon glyphicon-minus"></span></button>
+                <button class="btn btn-danger" onclick="remove(this)"><span class="glyphicon glyphicon-remove"></span> Remove</button>
+            </td>
+        </tr>
+    }
+</table>
+
+
+
+

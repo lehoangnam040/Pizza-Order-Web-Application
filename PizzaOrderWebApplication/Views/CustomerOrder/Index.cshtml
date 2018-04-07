@@ -1,0 +1,124 @@
+﻿@using PizzaOrderWebApplication.Models;
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.PagedList<PizzaOrderWebApplication.Models.Food>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/_MyLayout.cshtml";
+}
+
+@section myjavascripts {
+    <script>
+        function AddFoodToCart(foodId, size) {
+            $.ajax({
+                type: "GET",
+                url: "/CustomerOrder/AddFoodToCart",
+                data: ({
+                    FoodID: foodId,
+                    Size: size
+                }),
+                success: function (result) {
+                    $("#MyCartNotification").text(result);
+                    $("#MyCartNotification").fadeIn(function () {
+                        $("#MyCartNotification").fadeOut(2000);
+                    });
+                }
+            });
+        }
+
+
+    </script>
+}
+
+@section navigation {
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li class="active">@Html.ActionLink("Menu", "Index", "CustomerOrder")</li>
+    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+}
+
+<div style="padding-left: 35px;">
+    <h2 style="margin: 0 0 30px;">
+        <span class="label label-primary">Menu</span>
+    </h2>
+    <p>
+        <span class="label label-success" style="float:right;" id="MyCartNotification"></span>
+    </p>
+    <ul class="nav nav-tabs">
+        @{
+            List<Category> Categories = (List<Category>)ViewData["Categories"];
+
+            Category Category = (Category)ViewData["Category"];
+
+
+            foreach (var c in Categories)
+            {
+                if (c == Category)
+                {
+                    <li class="active">
+                        @Html.ActionLink(c.CategoryName, "Index", "CustomerOrder",
+                       new { CategoryID = c.CategoryID }, null)
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        @Html.ActionLink(c.CategoryName, "Index", "CustomerOrder",
+                       new { CategoryID = c.CategoryID }, null)
+                    </li>
+                }
+            }
+        }
+    </ul>
+
+    <div class="tab-content clearfix">
+        <div class="tab-pane fade in active">
+            <h3 class="text-danger">
+                @Category.CategoryName
+            </h3>
+            <p style="font-style: italic;">@Category.CategoryDescription</p><br />
+
+            @foreach (var f in Model)
+            {
+                <div class="col-sm-6 col-xs-12">
+                    <div>
+                        <img src="~/Content/Images/Menu/Pizza/@f.ImageString"
+                             class="img-thumbnail col-sm-2" alt="@f.FoodName"
+                             style="padding-left: 0; padding-right: 0;" />
+                        <div class="col-sm-10">
+                            <p>
+                                <span style="color: red;">#@f.FoodID @f.FoodName</span>
+                                <span class="pull-right">
+                                    <span class="label label-default" style="padding-top: 5px;">$@f.Dishes.ElementAt(2).Price</span><b>/</b>
+                                    <span class="label label-default" style="padding-top: 5px;">$@f.Dishes.ElementAt(1).Price</span><b>/</b>
+                                    <span class="label label-default" style="padding-top: 5px;">$@f.Dishes.ElementAt(0).Price</span>
+                                </span>
+                            </p>
+                            <p><small>@f.Ingredients</small></p>
+                            <p class="pull-right well-sm" style="padding-right: 0;">
+                                Order:
+                                <button class="btn btn-xs btn-danger" onclick="AddFoodToCart('@f.FoodID', '@f.Dishes.ElementAt(2).Size')">Size S</button><b>/</b>
+                                <button class="btn btn-xs btn-danger" onclick="AddFoodToCart('@f.FoodID', '@f.Dishes.ElementAt(1).Size')">Size M</button><b>/</b>
+                                <button class="btn btn-xs btn-danger" onclick="AddFoodToCart('@f.FoodID', '@f.Dishes.ElementAt(0).Size')">Size L</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+    <div class="text-center">
+        <button class="btn btn-info btn-lg">
+            <a href="~/CustomerOrders/FoodCart.aspx" style="text-decoration: none; color: white;">
+                View The Cart
+            </a>
+            @*@Html.ActionLink("Xem giỏ hàng", "FoodCart", "CustomerOrder", null, new { @style="text-decoration: none; color: white;"})*@
+        </button>
+    </div>
+</div>

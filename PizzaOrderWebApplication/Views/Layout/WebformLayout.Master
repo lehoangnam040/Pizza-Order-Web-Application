@@ -1,0 +1,82 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="WebformLayout.master.cs"
+    Inherits="PizzaOrderWebApplication.Views.Layout.WebformLayout" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%: Page.Title %></title>
+    <link rel="stylesheet" type="text/css" href="../../Content/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../Content/Site.css">
+    <script src="../../Scripts/jquery-1.10.2.js"></script>
+    <script src="../../Scripts/bootstrap.js"></script>
+    <script src="../../Scripts/respond.js"></script>
+    <style>
+        .navbar {
+            border-radius: 0;
+        }
+
+        ul.navbar-nav li a {
+            color: rgba(255,255,255,.5) !important;
+        }
+
+            ul.navbar-nav li a:hover {
+                color: white !important;
+            }
+
+        ul.navbar-nav li.active a {
+            color: #d9534f !important;
+            background-color: white !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="nam-header container-fluid clearfix">
+        <div class="pull-left col-sm-9 col-xs-12">
+            <h1 class="text-danger"><span style="font-style: italic;">Pizza Express</span></h1>
+        </div>
+        <div class="pull-right col-sm-3 col-xs-12 label-success" style="margin-top: 20px; color: white; padding: 10px;">
+            Delicious - Cheap - Delivery home<br />
+            <span class="glyphicon glyphicon-phone-alt"></span><span style="font-style: italic;">Phone: (0243) 666 888</span>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-default" style="background-color: #d9534f; border: #d9534f 1px solid;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav" style="margin-left: 40px;">
+                    <asp:ContentPlaceHolder ID="Navigation" runat="server">
+                    </asp:ContentPlaceHolder>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div style="width: 1400px; max-width: 96vw; transform: translate(-50%); left: 50%; position: absolute;">
+        <div class="clearfix">
+            <div class="text-left clearfix col-sm-9">
+                <asp:ContentPlaceHolder ID="Body" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+
+            <div class="clearfix col-sm-3">
+                <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fpizzaexpressvn&tabs=timelines&width=300&height=214&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=249867248756745"
+                    width="300" height="214"
+                    style="border: none; overflow: hidden; max-width: 100%;"></iframe>
+            </div>
+        </div>
+
+        <div class="text-center label-danger" style="clear: left; margin: 40px 0 0; padding: 20px; color: white;">
+            &copy; <%: DateTime.Now.Year %> by Le Hoang Nam
+        </div>
+    </div>
+</body>
+</html>
